@@ -16,3 +16,31 @@
 // [5, 7, 8, 10, 5]
 
 // Tha answer is 3.
+
+
+function countAnalogousArrays(consecutiveDifference, lowerBound, upperBound){
+    if(!consecutiveDifference.length || lowerBound>upperBound){
+        return 0
+    }
+    let [upper,lower,cur] = [0,0,0]
+    for(let i =0;i<consecutiveDifference.length;i++){
+        cur = cur-consecutiveDifference[i]
+        upper = Math.max(upper, cur)
+        lower = Math.min(lower, cur)
+    }
+    const diff = upperBound - lowerBound
+
+    let result = diff - (upper-lower) +1
+    if(result<=0){
+        return 0
+    }else{
+        return result
+    }
+}
+const consecutiveDifference = 
+[-2, -1, -2, 5]
+// [-1, -2, -3]
+// [1, 1, 1, 1]
+const lowerBound = 3
+const upperBound = 10
+console.log(countAnalogousArrays(consecutiveDifference,lowerBound,upperBound))
